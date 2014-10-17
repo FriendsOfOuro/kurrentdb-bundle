@@ -1,4 +1,5 @@
 /bin/
 /vendor/
+*.swp
 composer.lock
 php-cs-fixer.phar
