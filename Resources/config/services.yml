@@ -1,0 +1,5 @@
+services:
+    event_store_client.event_store:
+        class: EventStore\EventStore
+        arguments:
+            - %event_store_client.base_url%
