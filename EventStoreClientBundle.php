@@ -1,5 +1,5 @@
 <?php
-namespace EventStore\Bundle\EventStoreClientBundle;
+namespace EventStore\Bundle\ClientBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
