@@ -20,10 +20,9 @@ class EventStoreClientExtensionTest extends TestCase
         unset($config['base_url']);
 
         $builder = new ContainerBuilder();
-        $loader->load(array($config), $builder);
+        $loader->load([$config], $builder);
 
         $this->assertEquals('http://127.0.0.1:2113/', $builder->getParameter('event_store_client.base_url'));
-
     }
 
     public function testBaseUrlIsPopulatedCorrectlyFromConfiguration()
@@ -32,9 +31,22 @@ class EventStoreClientExtensionTest extends TestCase
         $config = $this->getConfig();
 
         $builder = new ContainerBuilder();
-        $loader->load(array($config), $builder);
+        $loader->load([$config], $builder);
 
         $this->assertEquals('http://eventstore-fake.com:2113/', $builder->getParameter('event_store_client.base_url'));
+    }
+
+    public function testItShouldCreateEventStoreClientProperly()
+    {
+        $loader = new EventStoreClientExtension();
+        $config = $this->getConfig();
+        $config['base_url'] = 'http://127.0.0.1:2113/';
+
+        $builder = new ContainerBuilder();
+        $loader->load([$config], $builder);
+        $builder->compile();
+
+        $this->assertInstanceOf('EventStore\EventStore', $builder->get('event_store_client.event_store'));
     }
 
     private function getConfig()
