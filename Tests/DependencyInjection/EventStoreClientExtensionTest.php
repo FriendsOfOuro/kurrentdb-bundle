@@ -22,7 +22,7 @@ class EventStoreClientExtensionTest extends TestCase
         $builder = new ContainerBuilder();
         $loader->load([$config], $builder);
 
-        $this->assertEquals('http://127.0.0.1:2113/', $builder->getParameter('event_store_client.base_url'));
+        $this->assertEquals('http://127.0.0.1:2113', $builder->getParameter('event_store_client.base_url'));
     }
 
     public function testBaseUrlIsPopulatedCorrectlyFromConfiguration()
@@ -33,14 +33,14 @@ class EventStoreClientExtensionTest extends TestCase
         $builder = new ContainerBuilder();
         $loader->load([$config], $builder);
 
-        $this->assertEquals('http://eventstore-fake.com:2113/', $builder->getParameter('event_store_client.base_url'));
+        $this->assertEquals('http://eventstore-fake.com:2113', $builder->getParameter('event_store_client.base_url'));
     }
 
     public function testItShouldCreateEventStoreClientProperly()
     {
         $loader = new EventStoreClientExtension();
         $config = $this->getConfig();
-        $config['base_url'] = 'http://127.0.0.1:2113/';
+        $config['base_url'] = 'http://127.0.0.1:2113';
 
         $builder = new ContainerBuilder();
         $loader->load([$config], $builder);
@@ -52,7 +52,7 @@ class EventStoreClientExtensionTest extends TestCase
     private function getConfig()
     {
         $yaml = <<<EOF
-base_url: http://eventstore-fake.com:2113/
+base_url: http://eventstore-fake.com:2113
 EOF;
 
         return (new Parser())->parse($yaml);
