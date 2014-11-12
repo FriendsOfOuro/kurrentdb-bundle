@@ -23,7 +23,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('base_url')
                     ->cannotBeEmpty()
-                    ->defaultValue('http://127.0.0.1:2113/')
+                    ->defaultValue('http://127.0.0.1:2113')
                 ->end()
             ->end();
 
