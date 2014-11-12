@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class EventStoreTest extends TestCase
 {
-    public function testEventStoreCanCreateAStream()
+    public function testEventStoreCanCreateAStreamAndOpenIt()
     {
         $es = $this->getEventStore();
 
