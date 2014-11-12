@@ -14,7 +14,7 @@ env:
 before_install:
     - wget http://download.geteventstore.com/binaries/EventStore-OSS-Linux-${EVENT_STORE_VERSION}.tar.gz
     - tar xf EventStore*.tar.gz
-    - cd EventStore* && ./clusternode --mem-db 2>&1> eventstore.log &
+    - cd EventStore-OSS* && ./clusternode --mem-db 2>&1> eventstore.log &
 
 install:
     - composer require --no-update symfony/symfony=${SYMFONY_VERSION}
