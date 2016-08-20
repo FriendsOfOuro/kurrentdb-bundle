@@ -1,5 +1,5 @@
 {
-    "name": "dbellettini/eventstore-client-bundle",
+    "name": "friendsofouro/eventstore-client-bundle",
     "description": "GetEventStore integration for Symfony 2",
     "type": "symfony-bundle",
     "keywords": [
@@ -20,7 +20,7 @@
         },
         {
             "name": "Contributors",
-            "homepage": "https://github.com/dbellettini/event-store-bundle/graphs/contributors"
+            "homepage": "https://github.com/FriendsOfOuro/event-store-bundle/graphs/contributors"
         }
     ],
     "require": {
