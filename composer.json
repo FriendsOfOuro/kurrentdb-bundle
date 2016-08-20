@@ -23,6 +23,9 @@
             "homepage": "https://github.com/FriendsOfOuro/event-store-bundle/graphs/contributors"
         }
     ],
+    "replace": {
+        "dbellettini/eventstore-client-bundle": "self.version"
+    },
     "require": {
         "symfony/framework-bundle": "~2.1",
         "dbellettini/eventstore-client": "~0.2"
