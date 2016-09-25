@@ -1,5 +1,5 @@
 {
-    "name": "friendsofouro/eventstore-client-bundle",
+    "name": "friendsofouro/geteventstore-bundle",
     "description": "GetEventStore integration for Symfony 2",
     "type": "symfony-bundle",
     "keywords": [
@@ -10,8 +10,8 @@
     "authors": [
         {
             "name": "Davide Bellettini",
-            "email": "davide@bellettini.me",
-            "homepage": "http://bellettini.me/"
+            "email": "davide@bellettini.eu",
+            "homepage": "http://davidebellettini.com/"
         },
         {
             "name": "Nicolò Pignatelli",
@@ -24,11 +24,13 @@
         }
     ],
     "replace": {
-        "dbellettini/eventstore-client-bundle": "self.version"
+        "dbellettini/eventstore-client-bundle": "self.version",
+        "friendsofouro/eventstore-client-bundle": "self.version"
     },
     "require": {
         "symfony/framework-bundle": "~2.1",
-        "dbellettini/eventstore-client": "~0.2"
+        "friendsofouro/geteventstore": "~0.1",
+        "friendsofouro/geteventstore-core": "~0.9"
     },
     "require-dev": {
         "phpunit/phpunit": ">=3.7.0"
