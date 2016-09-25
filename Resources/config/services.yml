@@ -3,3 +3,7 @@ services:
         class: EventStore\EventStore
         arguments:
             - %event_store_client.base_url%
+            - '@event_store_client.http_client'
+
+    event_store_client.http_client:
+        class: EventStore\Http\GuzzleHttpClient
