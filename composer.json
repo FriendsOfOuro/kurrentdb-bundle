@@ -28,7 +28,7 @@
         "friendsofouro/eventstore-client-bundle": "self.version"
     },
     "require": {
-        "symfony/framework-bundle": "~2.1",
+        "symfony/framework-bundle": "~2.8|~3.0",
         "friendsofouro/geteventstore": "~0.1",
         "friendsofouro/geteventstore-core": "~0.9"
     },
