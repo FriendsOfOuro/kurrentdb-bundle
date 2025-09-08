@@ -53,5 +53,8 @@
         "branch-alias": {
             "dev-main": "0.4.x-dev"
         }
+    },
+    "replaces": {
+        "friendsofouro/geteventstore-bundle": "self.version"
     }
 }
