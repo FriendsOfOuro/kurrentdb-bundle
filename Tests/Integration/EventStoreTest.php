@@ -1,15 +1,25 @@
 <?php
+
 namespace EventStore\Bundle\ClientBundle\Tests\Integration;
 
 use EventStore\Bundle\ClientBundle\DependencyInjection\EventStoreClientExtension;
-use EventStore\StreamFeed\LinkRelation;
+use EventStore\EventStore;
+use EventStore\Exception\StreamDeletedException;
+use EventStore\Exception\StreamNotFoundException;
+use EventStore\Exception\WrongExpectedVersionException;
 use EventStore\WritableEvent;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class EventStoreTest extends TestCase
 {
-    public function testEventStoreCanCreateAStreamAndOpenIt()
+    /**
+     * @throws WrongExpectedVersionException
+     * @throws StreamNotFoundException
+     * @throws StreamDeletedException
+     * @throws \Exception
+     */
+    public function testEventStoreCanCreateAStreamAndOpenIt(): void
     {
         $es = $this->getEventStore();
 
@@ -18,9 +28,14 @@ class EventStoreTest extends TestCase
 
         $es->writeToStream($streamName, $event);
         $es->openStreamFeed($streamName);
+
+        $this->expectNotToPerformAssertions();
     }
 
-    private function getEventStore()
+    /**
+     * @throws \Exception
+     */
+    private function getEventStore(): EventStore
     {
         $loader = new EventStoreClientExtension();
 

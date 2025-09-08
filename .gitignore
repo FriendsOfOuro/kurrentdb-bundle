@@ -1,5 +1,7 @@
 /bin/
 /vendor/
 *.swp
+.*.cache
+.idea
 composer.lock
 php-cs-fixer.phar

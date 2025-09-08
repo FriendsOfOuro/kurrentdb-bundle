@@ -1,8 +1,9 @@
 services:
     event_store_client.event_store:
         class: EventStore\EventStore
+        public: true
         arguments:
-            - %event_store_client.base_url%
+            - '%event_store_client.base_url%'
             - '@event_store_client.http_client'
 
     event_store_client.http_client:
