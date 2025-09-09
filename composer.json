@@ -26,6 +26,7 @@
     "require": {
         "php": "^8.4",
         "friendsofouro/kurrentdb": "^0.2",
+        "friendsofouro/kurrentdb-core": ">=0.13.0",
         "symfony/framework-bundle": "^7.3 || ^8.0",
         "symfony/yaml": "^7.3 || ^8.0"
     },
