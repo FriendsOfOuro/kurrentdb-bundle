@@ -1,6 +1,6 @@
 <?php
 
-namespace EventStore\Bundle\ClientBundle\DependencyInjection;
+namespace KurrentDB\Bundle\ClientBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -14,7 +14,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  */
 class EventStoreClientExtension extends Extension
 {
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
@@ -25,6 +25,6 @@ class EventStoreClientExtension extends Extension
         );
 
         $loader->load('services.yml');
-        $container->setParameter('event_store_client.base_url', $config['base_url']);
+        $container->setParameter('kurrent_db_client.base_url', $config['base_url']);
     }
 }

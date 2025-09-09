@@ -1,6 +1,6 @@
 <?php
 
-namespace EventStore\Bundle\ClientBundle\DependencyInjection;
+namespace KurrentDB\Bundle\ClientBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -14,12 +14,12 @@ class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('event_store_Client');
+        $treeBuilder = new TreeBuilder('kurrent_db_client');
         $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
             ->children()
-                ->scalarNode('base_url')
+                ->stringNode('base_url')
                     ->cannotBeEmpty()
                     ->defaultValue('http://127.0.0.1:2113')
                 ->end()

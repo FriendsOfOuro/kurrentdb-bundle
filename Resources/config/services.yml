@@ -1,10 +1,10 @@
 services:
-    event_store_client.event_store:
-        class: EventStore\EventStore
+    kurrent_db_client.event_store:
+        class: KurrentDB\EventStore
         public: true
         arguments:
-            - '%event_store_client.base_url%'
-            - '@event_store_client.http_client'
+            - '%kurrent_db_client.base_url%'
+            - '@kurrent_db_client.http_client'
 
-    event_store_client.http_client:
-        class: EventStore\Http\GuzzleHttpClient
+    kurrent_db_client.http_client:
+        class: KurrentDB\Http\GuzzleHttpClient

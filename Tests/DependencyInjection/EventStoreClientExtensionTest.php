@@ -1,13 +1,14 @@
 <?php
 
-namespace EventStore\Bundle\ClientBundle\Tests\DependencyInjection;
+namespace KurrentDB\Bundle\ClientBundle\Tests\DependencyInjection;
 
 /*
  * Some methods are from FOSUserBundle (Copyright (c) 2010-2011 FriendsOfSymfony)
  * @author Davide Bellettini <davide@bellettini.me>>
  */
 
-use EventStore\Bundle\ClientBundle\DependencyInjection\EventStoreClientExtension;
+use KurrentDB\Bundle\ClientBundle\DependencyInjection\EventStoreClientExtension;
+use KurrentDB\EventStore;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Yaml\Parser;
@@ -23,7 +24,7 @@ class EventStoreClientExtensionTest extends TestCase
         $builder = new ContainerBuilder();
         $loader->load([$config], $builder);
 
-        $this->assertEquals('http://127.0.0.1:2113', $builder->getParameter('event_store_client.base_url'));
+        $this->assertEquals('http://127.0.0.1:2113', $builder->getParameter('kurrent_db_client.base_url'));
     }
 
     public function testBaseUrlIsPopulatedCorrectlyFromConfiguration(): void
@@ -34,7 +35,7 @@ class EventStoreClientExtensionTest extends TestCase
         $builder = new ContainerBuilder();
         $loader->load([$config], $builder);
 
-        $this->assertEquals('http://eventstore-fake.com:2113', $builder->getParameter('event_store_client.base_url'));
+        $this->assertEquals('http://eventstore-fake.com:2113', $builder->getParameter('kurrent_db_client.base_url'));
     }
 
     public function testItShouldCreateEventStoreClientProperly(): void
@@ -47,7 +48,7 @@ class EventStoreClientExtensionTest extends TestCase
         $loader->load([$config], $builder);
         $builder->compile();
 
-        $this->assertInstanceOf('EventStore\EventStore', $builder->get('event_store_client.event_store'));
+        $this->assertInstanceOf(EventStore::class, $builder->get('kurrent_db_client.event_store'));
     }
 
     private function getConfig(): mixed
