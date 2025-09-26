@@ -3,8 +3,18 @@ services:
         class: KurrentDB\EventStore
         public: true
         arguments:
-            - '%kurrent_db_client.base_url%'
+            - '@kurrent_db_client.uri'
+            - '@kurrent_db_client.http_factory'
+            - '@kurrent_db_client.http_factory'
             - '@kurrent_db_client.http_client'
 
+    kurrent_db_client.uri:
+        class: GuzzleHttp\Psr7\Uri
+        arguments:
+            - '%kurrent_db_client.base_url%'
+
+    kurrent_db_client.http_factory:
+        class: GuzzleHttp\Psr7\HttpFactory
+
     kurrent_db_client.http_client:
-        class: KurrentDB\Http\GuzzleHttpClient
+        class: FriendsOfOuro\Http\Batch\Guzzle\GuzzleHttpClient
