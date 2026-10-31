@@ -1,0 +1,54 @@
+name: PHPUnit Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php_version: ['8.4', '8.5']
+
+    services:
+      kurrentdb:
+        image: kurrentplatform/kurrentdb:latest
+        env:
+          KURRENTDB_CLUSTER_SIZE: 1
+          KURRENTDB_RUN_PROJECTIONS: All
+          KURRENTDB_START_STANDARD_PROJECTIONS: true
+          KURRENTDB_NODE_PORT: 2113
+          KURRENTDB_INSECURE: true
+          KURRENTDB_ENABLE_ATOM_PUB_OVER_HTTP: true
+        ports:
+          - 2113:2113
+        options: >-
+          --health-cmd "curl -f http://localhost:2113/health/live || exit 1"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+          --health-start-period 30s
+
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php_version }}
+
+    - name: Validate composer.json
+      run: composer validate --strict
+
+    - name: Install dependencies
+      run: composer install --no-interaction --no-progress
+
+    - name: Run test suite
+      run: vendor/bin/phpunit
